@@ -31,14 +31,16 @@ class DishDetail extends Component {
     return (
       <div>
         <h4>Comments</h4>
-        {comments.map((comment) => (
-          <div key={comment.id}>
-            <p>{comment.comment}</p>
-            <p>
-              -- {comment.author}, {this.formatDate(comment.date)}
-            </p>
-          </div>
-        ))}
+        <ul className="list-unstyled">
+          {comments.map((comment) => (
+            <li key={comment.id}>
+              <p>{comment.comment}</p>
+              <p>
+                -- {comment.author}, {this.formatDate(comment.date)}
+              </p>
+            </li>
+          ))}
+        </ul>
       </div>
     );
   };
