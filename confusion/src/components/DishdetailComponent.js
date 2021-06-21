@@ -13,6 +13,18 @@ class DishDetail extends Component {
     }).format(date);
   };
 
+  renderDish = (dish) => {
+    return (
+      <Card>
+        <CardBody>
+          <CardImg width="100%" src={dish.image} alt={dish.name} />
+          <CardTitle className="mt-2">{dish.name}</CardTitle>
+          <CardText>{dish.description}</CardText>
+        </CardBody>
+      </Card>
+    );
+  };
+
   renderComments = (comments) => {
     if (!comments || comments.length === 0) return <div></div>;
 
@@ -37,18 +49,9 @@ class DishDetail extends Component {
     return (
       <div className="row">
         <div className="col-12 col-md-5 m-1">
-          <Card>
-            <CardBody>
-              <CardImg
-                width="100%"
-                src={this.props.dish.image}
-                alt={this.props.dish.name}
-              />
-              <CardTitle className="mt-2">{this.props.dish.name}</CardTitle>
-              <CardText>{this.props.dish.description}</CardText>
-            </CardBody>
-          </Card>
+          {this.renderDish(this.props.dish)}
         </div>
+
         <div className="col-12 col-md-5 m-1">
           {this.renderComments(this.props.dish.comments)}
         </div>
