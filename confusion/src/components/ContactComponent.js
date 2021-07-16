@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from "react";
 import {
   Breadcrumb,
@@ -8,7 +9,6 @@ import {
   Label,
   Input,
   Col,
-  Row,
   FormFeedback,
 } from "reactstrap";
 
