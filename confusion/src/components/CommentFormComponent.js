@@ -58,6 +58,8 @@ class CommentForm extends Component {
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
                 </Control.select>
               </FormGroup>
               <FormGroup>
@@ -112,8 +114,8 @@ class CommentForm extends Component {
                 />
               </FormGroup>
               <FormGroup>
-                <Button type="submit" color="primary">
-                  Submit
+                <Button outline color="secondary" onClick={this.toggleModal}>
+                  <span className="fa fa-pencil"></span> Submit Comments
                 </Button>
               </FormGroup>
             </LocalForm>
