@@ -32,8 +32,7 @@ class CommentForm extends Component {
   }
 
   handleSubmit(values) {
-    console.log("Current State is: " + JSON.stringify(values));
-    alert("Current State is: " + JSON.stringify(values));
+    this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
   }
 
   render() {
@@ -52,15 +51,22 @@ class CommentForm extends Component {
                 <Label htmlFor="rating">Rating</Label>
                 <Control.select
                   model=".rating"
-                  name="rating"
+                  id="rating"
                   className="form-control"
                 >
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
                 </Control.select>
+                {/* <label htmlFor="user.faveColor">Favorite color:</label>
+        <Control.select model="user.faveColor" id="user.faveColor">
+          <option value="red">red</option>
+          <option value="green">green</option>
+          <option value="blue">blue</option>
+        </Control.select> */}
+
               </FormGroup>
               <FormGroup>
                 <Label htmlFor="author">Your Name</Label>
@@ -114,7 +120,12 @@ class CommentForm extends Component {
                 />
               </FormGroup>
               <FormGroup>
-                <Button outline color="secondary" onClick={this.toggleModal}>
+                <Button
+                  type="submit"
+                  outline
+                  color="secondary"
+                  onClick={this.toggleModal}
+                >
                   <span className="fa fa-pencil"></span> Submit Comments
                 </Button>
               </FormGroup>
