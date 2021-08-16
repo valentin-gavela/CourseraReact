@@ -32,7 +32,12 @@ class CommentForm extends Component {
   }
 
   handleSubmit(values) {
-    this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+    this.props.postComment(
+      this.props.dishId,
+      values.rating,
+      values.author,
+      values.comment
+    );
   }
 
   render() {
@@ -60,13 +65,6 @@ class CommentForm extends Component {
                   <option value="4">4</option>
                   <option value="5">5</option>
                 </Control.select>
-                {/* <label htmlFor="user.faveColor">Favorite color:</label>
-        <Control.select model="user.faveColor" id="user.faveColor">
-          <option value="red">red</option>
-          <option value="green">green</option>
-          <option value="blue">blue</option>
-        </Control.select> */}
-
               </FormGroup>
               <FormGroup>
                 <Label htmlFor="author">Your Name</Label>
