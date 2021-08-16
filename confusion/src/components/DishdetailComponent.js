@@ -13,6 +13,8 @@ import { CommentForm } from "./CommentFormComponent";
 
 import { Loading } from "./LoadingComponent";
 
+import { baseUrl } from "../shared/baseUrl";
+
 const formatDate = (inputDate) => {
   const date = new Date(inputDate);
 
@@ -27,7 +29,7 @@ function RenderDish({ dish }) {
   return (
     <Card>
       <CardBody>
-        <CardImg width="100%" src={dish.image} alt={dish.name} />
+        <CardImg top src={baseUrl + dish.image} alt={dish.name} />
         <CardTitle className="mt-2">{dish.name}</CardTitle>
         <CardText>{dish.description}</CardText>
       </CardBody>
