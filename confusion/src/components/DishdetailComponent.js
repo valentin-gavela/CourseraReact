@@ -18,13 +18,11 @@ import { Loading } from "./LoadingComponent";
 import { baseUrl } from "../shared/baseUrl";
 
 const formatDate = (inputDate) => {
-  const date = new Date(inputDate);
-
-  return new Intl.DateTimeFormat("en-US", {
+  new Intl.DateTimeFormat("en-US", {
     year: "numeric",
     month: "short",
     day: "2-digit",
-  }).format(date);
+  }).format(new Date(Date.parse(inputDate)))
 };
 
 function RenderDish({ dish }) {
@@ -61,11 +59,7 @@ function RenderComments({ comments, postComment, dishId }) {
                   <p>{comment.comment}</p>
                   <p>
                     -- {comment.author} ,{" "}
-                    {new Intl.DateTimeFormat("en-US", {
-                      year: "numeric",
-                      month: "short",
-                      day: "2-digit",
-                    }).format(new Date(Date.parse(comment.date)))}
+                    {formatDate(comment.date)}
                   </p>
                 </li>
               </Fade>
