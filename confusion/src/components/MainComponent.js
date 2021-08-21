@@ -8,6 +8,7 @@ import {
   fetchDishes,
   fetchComments,
   fetchPromos,
+  fetchLeaders
 } from "../redux/ActionCreators";
 
 import { Menu } from "./MenuComponent";
@@ -39,6 +40,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   fetchComments: () => dispatch(fetchComments()),
   fetchPromos: () => dispatch(fetchPromos()),
+  fetchLeaders: () => dispatch(fetchLeaders()),
 });
 
 class Main extends Component {
@@ -51,15 +53,20 @@ class Main extends Component {
   render() {
     const HomePage = () => (
       <Home
+        // DISHES
         dish={this.props.dishes.dishes.filter((dish) => dish.featured)[0]}
         dishesLoading={this.props.dishes.isLoading}
         dishErrMess={this.props.dishes.errMess}
+        // PROMOS
         promotion={
           this.props.promotions.promotions.filter((promo) => promo.featured)[0]
         }
         promoLoading={this.props.promotions.isLoading}
         promoErrMess={this.props.promotions.errMess}
+        // LEADERS
         leader={this.props.leaders.filter((leader) => leader.featured)[0]}
+        leaderLoading={this.props.leaders.isLoading}
+        leaderErrMess={this.props.leaders.errMess}
       />
     );
 
