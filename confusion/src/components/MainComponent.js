@@ -8,7 +8,8 @@ import {
   fetchDishes,
   fetchComments,
   fetchPromos,
-  fetchLeaders
+  fetchLeaders,
+  postFeedback,
 } from "../redux/ActionCreators";
 
 import { Menu } from "./MenuComponent";
@@ -30,17 +31,42 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
+  // COMMENT
   postComment: (dishId, rating, author, comment) =>
     dispatch(postComment(dishId, rating, author, comment)),
-  fetchDishes: () => {
-    dispatch(fetchDishes());
-  },
+  fetchComments: () => dispatch(fetchComments()),
+  // DISHES
+  fetchDishes: () => dispatch(fetchDishes()),
+  // PROMOS
+  fetchPromos: () => dispatch(fetchPromos()),
+  // LEADERS
+  fetchLeaders: () => dispatch(fetchLeaders()),
+  // FEEDBACK
+  postFeedback: (
+    dishId,
+    firstname,
+    lastname,
+    telnum,
+    email,
+    agree,
+    contactType,
+    message
+  ) =>
+    dispatch(
+      postFeedback(
+        dishId,
+        firstname,
+        lastname,
+        telnum,
+        email,
+        agree,
+        contactType,
+        message
+      )
+    ),
   resetFeedbackForm: () => {
     dispatch(actions.reset("feedback"));
   },
-  fetchComments: () => dispatch(fetchComments()),
-  fetchPromos: () => dispatch(fetchPromos()),
-  fetchLeaders: () => dispatch(fetchLeaders()),
 });
 
 class Main extends Component {
@@ -48,6 +74,7 @@ class Main extends Component {
     this.props.fetchDishes();
     this.props.fetchComments();
     this.props.fetchPromos();
+    this.props.fetchLeaders();
   }
 
   render() {
@@ -64,8 +91,8 @@ class Main extends Component {
         promoLoading={this.props.promotions.isLoading}
         promoErrMess={this.props.promotions.errMess}
         // LEADERS
-        leader={this.props.leaders.filter((leader) => leader.featured)[0]}
-        leaderLoading={this.props.leaders.isLoading}
+        leader={this.props.leaders.leaders.filter((leader) => leader.featured)[0]}
+        leadersLoading={this.props.leaders.isLoading}
         leaderErrMess={this.props.leaders.errMess}
       />
     );
@@ -110,7 +137,10 @@ class Main extends Component {
                 exact
                 path="/contactus"
                 component={() => (
-                  <Contact resetFeedbackForm={this.props.resetFeedbackForm} />
+                  <Contact
+                    resetFeedbackForm={this.props.resetFeedbackForm}
+                    postFeedback={this.props.postFeedback}
+                  />
                 )}
               />
               <Route path="/home" component={HomePage} />
