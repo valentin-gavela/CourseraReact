@@ -91,7 +91,9 @@ class Main extends Component {
         promoLoading={this.props.promotions.isLoading}
         promoErrMess={this.props.promotions.errMess}
         // LEADERS
-        leader={this.props.leaders.leaders.filter((leader) => leader.featured)[0]}
+        leader={
+          this.props.leaders.leaders.filter((leader) => leader.featured)[0]
+        }
         leadersLoading={this.props.leaders.isLoading}
         leaderErrMess={this.props.leaders.errMess}
       />
@@ -131,7 +133,13 @@ class Main extends Component {
               <Route
                 exact
                 path="/aboutus"
-                component={() => <About leaders={this.props.leaders} />}
+                component={() => (
+                  <About
+                    leaders={this.props.leaders.leaders}
+                    leadersLoading={this.props.leaders.isLoading}
+                    leaderErrMess={this.props.leaders.errMess}
+                  />
+                )}
               />
               <Route
                 exact
